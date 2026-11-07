@@ -64,7 +64,10 @@
     "HSUM boot default",
     "CPU schedutil",
     "Bluetooth enabled",
-    "no permissive/disabled SELinux cmdline"
+    "no permissive/disabled SELinux cmdline",
+    "no needs_recovery/orphan_present flags",
+    "empty system journal; no fsck warnings"
   ],
-  "validation": "tested component baseline; assembled fresh image not yet boot-tested"
+  "validation": "tested component baseline; assembled fresh image not yet boot-tested",
+  "journals": "recovered on copies, then recreated empty before sanitization"
 }

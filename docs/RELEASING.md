@@ -21,7 +21,11 @@ python3 tools/package_release.py /absolute/path/work/HoshinoOS-Pi5-YYYYMMDD.img 
    serial/MAC cmdline tokens and explicitly request SELinux enforcing in the
    COPY. The Aluminium user init already enforced despite an obsolete
    permissive bring-up token on the tested source.
-3. Copy allocated system/vendor blocks. Remove the preconfigured portssh
+3. Copy allocated system/vendor blocks. Recover the COPIES first, require no
+   pending journal/orphan flags, then recreate empty journals so stale journal
+   transactions cannot undo offline patches or retain deleted data. A zero
+   exit from read-only fsck alone is insufficient: it may skip journal recovery.
+   Remove the preconfigured portssh
    endpoint, authorization and host key on the copy, then recopy allocated
    blocks so freed key blocks are not distributed.
 4. Create new userdata and metadata; **never read/copy source userdata files**.

@@ -100,6 +100,31 @@ def header(device):
                 if ':' in line for a, b in [line.split(':', 1)])
 
 
+def check_ext4(image):
+    h = header(image)
+    features = set(h['Filesystem features'].split())
+    require(not features.intersection({'needs_recovery', 'orphan_present'}),
+            'Filesystem still needs recovery/orphan processing')
+    r = subprocess.run(['e2fsck', '-fn', str(image)], capture_output=True, text=True)
+    result = r.stdout + r.stderr
+    require(r.returncode == 0 and 'Warning:' not in result and 'Clear? no' not in result,
+            'Unresolved filesystem warning: ' + result)
+
+
+def normalize_ext4_copy(image):
+    """Recover ONLY an image copy, then replace its journal with an empty one."""
+    r = subprocess.run(['e2fsck', '-fp', str(image)], capture_output=True, text=True)
+    require(r.returncode in (0, 1), 'Image-copy recovery needs manual review: ' + r.stdout + r.stderr)
+    h = header(image)
+    if 'has_journal' in h['Filesystem features'].split():
+        journal = int(h['Total journal blocks']) * int(h['Block size']) // 1024**2
+        run('tune2fs', '-O', '^has_journal', image)
+        run('tune2fs', '-j', '-J', 'size=' + str(journal), image)
+    r = subprocess.run(['e2fsck', '-fp', str(image)], capture_output=True, text=True)
+    require(r.returncode in (0, 1), 'Image-copy check failed: ' + r.stdout + r.stderr)
+    check_ext4(image)
+
+
 def fresh_ext4(device, output, size, label):
     h = header(device)
     features = h['Filesystem features'].split()
@@ -117,7 +142,7 @@ def fresh_ext4(device, output, size, label):
         journal = int(h['Total journal blocks']) * 4096 // 1024**2
         args += ['-J', 'size=' + str(journal)]
     run(*args, output, str(size // 4096))
-    run('e2fsck', '-fn', output)
+    check_ext4(output)
     actual = header(output)
     require(set(actual['Filesystem features'].split()) == set(features), 'Feature mismatch')
     entries = [line.split('/')[5] for line in dbg(output, 'ls -p /').splitlines()
@@ -172,7 +197,7 @@ def main():
     require(not any(c in str(output) for c in '\n\r"\\ '), 'Use an output path without spaces/quotes')
     require(not output.with_suffix('.release.json').exists(), 'Manifest already exists')
     for tool in ['lsblk', 'sfdisk', 'blockdev', 'e2image', 'debugfs', 'dumpe2fs',
-                 'e2fsck', 'mke2fs', 'mkfs.fat', 'fsck.fat', 'mcopy', 'mtype']:
+                 'e2fsck', 'mke2fs', 'tune2fs', 'mkfs.fat', 'fsck.fat', 'mcopy', 'mtype']:
         require(shutil.which(tool), 'Missing tool: ' + tool)
     info = json.loads(run('lsblk', '--tree', '-J', '-b', '-o',
                           'NAME,SERIAL,TRAN,MOUNTPOINTS', disk))['blockdevices'][0]
@@ -229,6 +254,8 @@ def main():
             print(f'Capturing allocated ext4 blocks: p{n}', flush=True)
             image = stage / f'p{n}.img'
             run('e2image', '-ra', prefix + str(n), image)
+            print(f'Recovering p{n} COPY and clearing old journal history', flush=True)
+            normalize_ext4_copy(image)
             images[n] = image
         system = images[5]
         print('Removing workstation SSH endpoint from image copy', flush=True)
@@ -237,7 +264,7 @@ def main():
         for path in removed:
             remove_tree(system, path)
             require(not exists(system, path), 'SSH path still present')
-        run('e2fsck', '-fn', system)
+        check_ext4(system)
         clean = stage / 'p5-clean.img'
         # Re-copy only allocated blocks after unlink: freed SSH key blocks become holes.
         run('e2image', '-ra', system, clean)
@@ -261,7 +288,7 @@ def main():
                                  'manifests/stock-apks.json').read_text())
         stock_matches = []
         for n in [5, 6]:
-            run('e2fsck', '-fn', images[n])
+            check_ext4(images[n])
             stock_matches.extend(scan_keys(images[n], stock_apks))
         # Construct fresh MBR/EBRs, never copy any source gaps or deleted data.
         with output.open('xb') as f:
@@ -290,6 +317,7 @@ def main():
                     'userdata': 'fresh; source data never copied', 'metadata': 'fresh',
                     'ssh': 'configured endpoint, client authorization and host key removed',
                     'deleted_blocks': 'not copied; fresh MBR/gaps/FAT/data/metadata',
+                    'journals': 'recovered on copies, then recreated empty before sanitization',
                     'stock_apk_key_resources': stock_matches,
                     'checks': ['source and image ext4 fsck', 'FAT fsck', 'private key material scan',
                                'Task Manager provider', 'HSUM boot default', 'CPU schedutil',

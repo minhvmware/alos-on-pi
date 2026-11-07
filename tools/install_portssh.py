@@ -9,12 +9,16 @@ import re
 from pathlib import Path
 import subprocess
 
+from capture_release import check_ext4
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('image', type=Path)
     args = parser.parse_args()
     image = str(args.image.resolve())
+    # Never apply offline changes on top of a pending journal replay.
+    check_ext4(Path(image))
     project = Path(__file__).resolve().parents[1]
     payload = project / 'work/ssh-trial/payload'
 
