@@ -1,0 +1,70 @@
+{
+  "format_version": 1,
+  "image": "HoshinoOS-Pi5-20261107.img",
+  "image_size": 15360000000,
+  "partition_table": {
+    "label": "dos",
+    "id": "0x4853484f",
+    "unit": "sectors",
+    "sectorsize": 512,
+    "partitions": [
+      {
+        "node": "HoshinoOS-Pi5-20261107.img1",
+        "start": 2048,
+        "size": 262144,
+        "type": "c",
+        "bootable": true
+      },
+      {
+        "node": "HoshinoOS-Pi5-20261107.img2",
+        "start": 264192,
+        "size": 17608704,
+        "type": "5"
+      },
+      {
+        "node": "HoshinoOS-Pi5-20261107.img3",
+        "start": 17874944,
+        "size": 12125056,
+        "type": "83"
+      },
+      {
+        "node": "HoshinoOS-Pi5-20261107.img5",
+        "start": 266240,
+        "size": 16777216,
+        "type": "83"
+      },
+      {
+        "node": "HoshinoOS-Pi5-20261107.img6",
+        "start": 17045504,
+        "size": 786432,
+        "type": "83"
+      },
+      {
+        "node": "HoshinoOS-Pi5-20261107.img7",
+        "start": 17833984,
+        "size": 32768,
+        "type": "83"
+      }
+    ]
+  },
+  "source_disk_modified": false,
+  "userdata": "fresh; source data never copied",
+  "metadata": "fresh",
+  "ssh": "configured endpoint, client authorization and host key removed",
+  "deleted_blocks": "not copied; fresh MBR/gaps/FAT/data/metadata",
+  "stock_apk_key_resources": [
+    "/product/app/Photos/Photos.apk",
+    "/product/priv-app/DesktopRecorderPrebuilt_953092853/DesktopRecorderPrebuilt_953092853.apk"
+  ],
+  "checks": [
+    "source and image ext4 fsck",
+    "FAT fsck",
+    "private key material scan",
+    "Task Manager provider",
+    "HSUM boot default",
+    "CPU schedutil",
+    "Bluetooth enabled",
+    "no permissive/disabled SELinux cmdline"
+  ],
+  "validation": "tested component baseline; assembled fresh image not yet boot-tested"
+}

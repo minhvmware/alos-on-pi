@@ -2,6 +2,14 @@
 
 Updated 2026-11-07, Asia/Ho_Chi_Minh. This file supersedes old milestone lists.
 
+Publication update: a compact release image was assembled from the current SSD,
+with new data/metadata, fresh FAT/free space and the configured SSH endpoint
+removed. Filesystem/privacy checks passed; separate fresh-image hardware boot
+is still pending. Install via INSTALL.md; developer prerequisites and the
+previously local UART/metadata/policy setup helpers are now in DEVELOPMENT.md.
+The new policy bootstrap compiled both validators and reproduced the M12
+policy trial from an M11 input, including readback and fsck.
+
 The pre-reset hybrid system booted Aluminium Android17/API37 desktop on a
 Pi5 Linux6.18.26/Raspberry Vanilla vendor stack, Mesa26.1.4 V3D/V3DV. Native
 ARM64, hardware GLES, USB keyboard/mouse and Wi-Fi worked. Framework still

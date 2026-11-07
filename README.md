@@ -3,11 +3,27 @@
 Experimental ARM64 port using AluminiumOS Android 17 framework/desktop with
 the Raspberry Vanilla Pi 5 vendor/BSP, Linux 6.18 and Mesa V3D/V3DV.
 
-This repository contains project scripts, patches and research notes. Firmware,
-Google/Aluminium proprietary images and APKs, extracted partitions, AOSP sources,
-toolchains, credentials, device logs and SSD backups are not distributed here.
-This is a development snapshot; it does not build a complete distributable OS
-from a clean checkout yet. Historical trials require separately obtained inputs.
+## Download and run
+
+Get the bootable development image from
+[Releases](https://github.com/minhvmware/alos-on-pi/releases), then follow
+[download, flash and SSD expansion](docs/INSTALL.md). GitHub's automatic source
+ZIP is not the OS image. Download every numbered image part when a release is split.
+
+The snapshot is based on the installation tested on Pi5, with fresh data/metadata
+and personal SSH access removed. Its compact/sanitized assembly has not yet had
+a separate physical boot test, so it is a development prerelease. Desktop ANRs,
+Chrome Vulkan compatibility and several hardware profiles remain unfinished.
+
+For development, start at [DEVELOPMENT.md](docs/DEVELOPMENT.md), which lists
+actual inputs and commands to create policy tools/vendor inputs, restore file
+metadata, use UART, provision your own SSH keys and package a release.
+
+The Git source tree contains project scripts, patches and research notes.
+Images belong in Release assets; OS inputs, extracted files, AOSP checkouts,
+toolchains, credentials, logs and SSD backups stay outside Git. A complete
+Aluminium framework source build is not provided; historical M-stage trials
+are guarded integration steps, not a one-command source OS installer.
 
 ## Status — 2026-11-07
 
@@ -27,6 +43,16 @@ from a clean checkout yet. Historical trials require separately obtained inputs.
 
 See [current status and next steps](docs/STATUS.md). Older notes record the
 state at each experiment and may be superseded by that status.
+
+## Start here
+
+| Task | Guide |
+|---|---|
+| Install image and use full SSD capacity | [INSTALL.md](docs/INSTALL.md) |
+| Set density/mouse and Chrome workaround | [FIRST_BOOT.md](docs/FIRST_BOOT.md) |
+| Develop with explicit OS inputs | [DEVELOPMENT.md](docs/DEVELOPMENT.md) |
+| Repair file owners and Android labels | [FILESYSTEM.md](docs/FILESYSTEM.md) |
+| Capture, sanitize and package a release | [RELEASING.md](docs/RELEASING.md) |
 
 ## Layout
 
