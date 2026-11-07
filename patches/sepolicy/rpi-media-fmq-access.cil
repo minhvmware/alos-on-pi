@@ -1,0 +1,9 @@
+; rpi_media_fmq_compat_v3
+; Complete the standard AOSP shared-memory access set (read/write/getattr/map)
+; on ONLY the same four FMQ source/target pairs from M10/M11.
+; M11 boot confirmed missing hal_audio_default read. Policy inspection also
+; finds mediaswcodec tmpfs lacks read. FMQ size queries need getattr.
+(allow hal_audio_default tmpfs (file (read write getattr map)))
+(allow mediaswcodec tmpfs (file (read write getattr map)))
+(allow mediaswcodec system_server_tmpfs (file (read write getattr map)))
+(allow mediaswcodec appdomain_tmpfs (file (read write getattr map)))

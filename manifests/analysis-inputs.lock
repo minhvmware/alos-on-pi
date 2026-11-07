@@ -1,0 +1,13 @@
+# Inputs and tools used for the real AluminiumOS Phase 0 analysis.
+# Format: sha256  size-bytes  identifier
+
+a8e5babdd6d922b28a6768a7340473c9451381a0b2adce9abd064bbd5a5d08e7  2910908938  aluminium-ota/91b269229318b3dae45e08966e69e2991e52c039.zip
+3eca6631a2720cfeb77d82fce99cfb0a31e34a296073911add748e33204cf159  2971788     fedora/android-tools-37.0.0p1-1.fc44.x86_64.rpm
+1a1b0df0d95c91b97d6ccebbb809e0d7c54f67105445850c41b411cb82c7908f  254869      fedora/erofs-utils-1.9.4-1.fc44.x86_64.rpm
+bc10e5c4fb6b014dd047a9e5182190bbdb8d56fea47afa6879d1662067bb5771  256917      fedora/intel-qpl-1.9.0-3.fc44.x86_64.rpm
+4914209d53c5f061b4d176a176761ab5f6949d4e67f052057cc27988ec290066  48296       fedora/setools-console-4.6.0-6.fc44.x86_64.rpm
+4129d67d4270d6c1f64908625628836fc6385d890992d6925b1fc4cfe8df1caa  814843      fedora/protobuf-compiler-3.19.6-20.fc44.x86_64.rpm
+83f9ec1e2946668f3eb63c50ba2b72c5339603457e0d656a740067fe3af4afb2  2650160     magiskboot/v31.0/96221b69fae9910b1c0c75c2f92a4ebb2c2dc698
+d35e9d2037b47d41844c71735eb567bf0a3074ae8a37ac7eeebeaf82468dedd5  8094072     payload-dumper-go/c3a50ba8d784764c06143c1f82971cd81a77f9d6
+4591637f51644f5429f9e2fe589ab22b92f61842  0  aosp/system/update_engine@android-17.0.0_r1/update_metadata.proto
+ce2bb9f710183c864040401d859874b5723e44d8  0  aosp/system/apex@android-17.0.0_r1/proto/apex_manifest.proto

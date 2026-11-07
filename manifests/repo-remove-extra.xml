@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Project-specific removals: large projects not needed for aosp_rpi5 tablet build. -->
+<manifest>
+  <remove-project name="platform/cts" />
+  <remove-project name="platform/test/cts-root" />
+  <remove-project name="platform/test/suite_harness" />
+  <remove-project name="platform/test/vts" />
+  <remove-project name="platform/test/vts-testcase/hal" />
+  <remove-project name="platform/test/vts-testcase/kernel" />
+  <remove-project name="platform/test/vts-testcase/nbu" />
+  <remove-project name="platform/test/vts-testcase/performance" />
+  <remove-project name="platform/test/vts-testcase/security" />
+  <remove-project name="platform/test/vts-testcase/vndk" />
+  <remove-project name="platform/external/chromium-webview" />
+  <remove-project name="platform/external/cronet" />
+  <remove-project name="platform/external/crosvm" />
+  <remove-project name="device/google/cuttlefish" />
+  <remove-project name="device/google/cuttlefish_prebuilts" />
+  <remove-project name="device/google/cuttlefish_vmm" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.1/arm64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.1/x86-64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.6/arm64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.6/x86-64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.12/arm64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.12/x86-64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.18/arm64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/6.18/x86-64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/mainline/arm64" />
+  <remove-project name="kernel/prebuilts/common-modules/virtual-device/mainline/x86-64" />
+  <remove-project name="platform/prebuilts/android-emulator" />
+  <remove-project name="platform/packages/services/display_safety" />
+  <!-- Cloned manually shallow because repo partial-clone lazy fetch hangs. -->
+  <remove-project name="platform/prebuilts/clang/host/linux-x86" />
+  <remove-project name="platform/prebuilts/jdk/jdk25" />
+  <remove-project name="platform/prebuilts/misc" />
+  <remove-project name="platform/prebuilts/module_sdk/art" />
+  <remove-project name="platform/prebuilts/remoteexecution-client" />
+  <remove-project name="platform/prebuilts/sdk" />
+  <remove-project name="platform/prebuilts/rust-toolchain/linux-musl-x86" />
+  <remove-project name="platform/prebuilts/rust-toolchain/linux-x86" />
+</manifest>

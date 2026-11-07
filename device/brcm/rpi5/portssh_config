@@ -1,0 +1,26 @@
+Port 2222
+AddressFamily inet
+ListenAddress PI_IP
+HostKey /system/etc/portssh/ssh_host_ed25519_key
+PidFile /data/local/tmp/portssh.pid
+AuthorizedKeysFile /system/etc/portssh/authorized_keys
+AllowUsers shell
+AuthenticationMethods publickey
+PubkeyAuthentication yes
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+PermitEmptyPasswords no
+PermitRootLogin no
+StrictModes yes
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
+PermitTunnel no
+PermitUserEnvironment no
+UseDNS no
+LoginGraceTime 20
+MaxAuthTries 3
+MaxSessions 2
+MaxStartups 2:30:5
+ForceCommand /system/bin/sh /system/etc/portssh/session.sh
+LogLevel VERBOSE

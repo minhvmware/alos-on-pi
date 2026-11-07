@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep the original grid counts, cell size, icon size and label metrics.
+     Move surplus space to the outer margins instead of inter-icon gutters. -->
+<workspaceSpecs xmlns:launcher="http://schemas.android.com/apk/prv/res/com.google.android.apps.nexuslauncher">
+    <specs launcher:maxAspectRatio="10">
+        <workspaceSpec launcher:dimensionType="0" launcher:maxAvailableSize="9999dp">
+            <startPadding launcher:ofRemainderSpace="0.5" />
+            <endPadding launcher:ofRemainderSpace="0.5" />
+            <gutter launcher:fixedSize="16dp" />
+            <cellSize launcher:fixedSize="96dp" />
+        </workspaceSpec>
+        <workspaceSpec launcher:dimensionType="1" launcher:maxAvailableSize="9999dp">
+            <startPadding launcher:ofRemainderSpace="0.5" />
+            <endPadding launcher:ofRemainderSpace="0.5" />
+            <gutter launcher:fixedSize="16dp" />
+            <cellSize launcher:fixedSize="96dp" />
+        </workspaceSpec>
+    </specs>
+</workspaceSpecs>

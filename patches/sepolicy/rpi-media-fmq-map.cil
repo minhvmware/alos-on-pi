@@ -1,0 +1,6 @@
+; rpi_media_fmq_compat_v2
+; M10 boot exposed the next FMQ operation: mmap of the same queue files.
+(allow hal_audio_default tmpfs (file (map)))
+(allow mediaswcodec tmpfs (file (map)))
+(allow mediaswcodec system_server_tmpfs (file (map)))
+(allow mediaswcodec appdomain_tmpfs (file (map)))

@@ -1,0 +1,8 @@
+; Pi kernel legacy memfd labeling: observed FMQ failures in audio and codecs.
+; ALOS policy grants memfd_file access, but this kernel reports tmpfs:file.
+; Preserve enforcing; scope fallback to the observed media server domains.
+; rpi_media_fmq_compat_v1
+(allow hal_audio_default tmpfs (file (write)))
+(allow mediaswcodec tmpfs (file (write)))
+(allow mediaswcodec system_server_tmpfs (file (read write)))
+(allow mediaswcodec appdomain_tmpfs (file (read write)))

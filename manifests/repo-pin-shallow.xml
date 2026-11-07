@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Re-add large projects with clone-depth=1 so repo does not fetch full history. -->
+<manifest>
+  <remove-project name="platform/frameworks/base" />
+  <project path="frameworks/base" name="platform/frameworks/base"
+           remote="aosp" revision="refs/tags/android-17.0.0_r1" clone-depth="1" />
+
+  <remove-project name="platform/packages/apps/Settings" />
+  <project path="packages/apps/Settings" name="platform/packages/apps/Settings"
+           remote="aosp" revision="refs/tags/android-17.0.0_r1" clone-depth="1" />
+
+  <remove-project name="platform/prebuilts/build-tools" />
+  <project path="prebuilts/build-tools" name="platform/prebuilts/build-tools"
+           remote="aosp" revision="refs/tags/android-17.0.0_r1" clone-depth="1" />
+
+</manifest>

@@ -1,0 +1,5 @@
+# HoshinoOS Pi 5 CPU responsiveness trial.
+# Vendor init already has the CPU sysfs permissions in the M12 policy.
+# Keep existing min/max frequency and all kernel thermal protection.
+on property:sys.boot_completed=1
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor schedutil

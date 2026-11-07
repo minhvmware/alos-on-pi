@@ -1,0 +1,4 @@
+# name|url|commit|branch (recorded 2026-10-24)
+android_local_manifest|https://github.com/raspberry-vanilla/android_local_manifest.git|a155dda7f0db82d9b8076c1f39f41db4167fcb73|android-17.0
+android_device_brcm_rpi5|https://github.com/raspberry-vanilla/android_device_brcm_rpi5.git|25a7ccffe9d769039906859f5641967e1aaa7564|android-17.0
+android_kernel_manifest|https://github.com/raspberry-vanilla/android_kernel_manifest.git|5da8f417aa3f59ce7625056c4754ba06900c9ec7|android-17.0

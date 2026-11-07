@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.aluminium.rpi5.launcher.compactgrid"
+    android:versionCode="1" android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="37" android:targetSdkVersion="37" />
+    <overlay android:targetPackage="com.google.android.apps.nexuslauncher"
+        android:isStatic="true" android:priority="20" />
+    <application android:hasCode="false" android:label="Pi compact desktop grid" />
+</manifest>

@@ -1,0 +1,9 @@
+on post-fs-data
+    start portssh
+
+service portssh /system/bin/sh /system/etc/portssh/start.sh
+    class core
+    user shell
+    group shell log readproc inet
+    seclabel u:r:shell:s0
+    disabled

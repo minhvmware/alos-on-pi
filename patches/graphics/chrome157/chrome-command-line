@@ -1,0 +1,1 @@
+_ --use-gl=angle --use-angle=gles --disable-features=Vulkan,SkipVulkanBlocklist --enable-logging

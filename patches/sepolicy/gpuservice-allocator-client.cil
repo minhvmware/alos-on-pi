@@ -1,0 +1,6 @@
+; Pi Vulkan's capability probe calls GraphicBufferMapper inside gpuservice.
+; Equivalent to hal_client_domain(gpuservice, hal_graphics_allocator) on Treble.
+(typeattributeset halclientdomain (gpuservice))
+(typeattributeset hal_graphics_allocator_client (gpuservice))
+(allow gpuservice hal_graphics_allocator (memfd_file (read write getattr map)))
+(allow hal_graphics_allocator gpuservice (memfd_file (read write getattr map)))

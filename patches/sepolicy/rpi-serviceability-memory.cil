@@ -1,0 +1,13 @@
+; Shared system UID provider needs its user-10 data parent to be traversable.
+(typeattributeset mlstrustedsubject (rpi_serviceability))
+
+; The existing framework publishes the actual process-memory statistics.
+; Its original vendor service label was lost when replacing Googlebook vendor.
+(type rpi_desktop_serviceability_service)
+(roletype object_r rpi_desktop_serviceability_service)
+(typeattributeset service_manager_type (rpi_desktop_serviceability_service))
+(typeattributeset system_server_service (rpi_desktop_serviceability_service))
+(allow system_server rpi_desktop_serviceability_service (service_manager (add find)))
+(allow system_app rpi_desktop_serviceability_service (service_manager (find)))
+(allow rpi_serviceability rpi_desktop_serviceability_service (service_manager (find)))
+(allow shell rpi_desktop_serviceability_service (service_manager (find)))

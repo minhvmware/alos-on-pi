@@ -1,0 +1,20 @@
+# Diagnostic services use an explicit existing domain; init must not infer one
+# from shell_exec. Keep collection independent of boot_completed.
+on post-fs-data
+    start portdiag_logcat
+    start portdiag_state
+
+service portdiag_logcat /system/bin/sh -c "exec /system/bin/logcat -b all -f /data/local/tmp/portdiag-logcat.txt -r 4096 -n 4"
+    class core
+    user shell
+    group shell log readproc
+    seclabel u:r:shell:s0
+    disabled
+
+service portdiag_state /system/bin/sh /system/etc/portdiag.sh
+    class core
+    user shell
+    group shell log readproc
+    seclabel u:r:shell:s0
+    disabled
+    oneshot

@@ -1,0 +1,69 @@
+# Synced third-party source and build output
+upstream/
+aosp/
+kernel-workspace/
+out/
+toolchain/
+
+# Never commit firmware/images or extracted proprietary files
+*.img
+*.zip
+*.7z
+extracted/
+artifacts/
+
+# Runtime evidence may contain serial numbers and personal data
+logs/*
+!logs/README.md
+
+# Local state
+__pycache__/
+*.log
+*.swp
+.DS_Store
+
+# Local experiments include SSH keys, app profiles and SSD backups
+/work/
+/baseline/
+/reports/
+
+# Compiled packages and binary dependencies
+*.apk
+*.apex
+*.aab
+*.dex
+*.o
+*.a
+*.so
+*.rpm
+*.deb
+*.bin
+*.dtb
+*.dtbo
+*.tar
+*.tar.gz
+*.tar.xz
+*.gz
+*.xz
+*.qcow2
+*.vmdk
+
+# Credentials and local editor/environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pk8
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+ssh_host_*key*
+authorized_keys
+known_hosts
+.vscode/
+.idea/
+.pytest_cache/
+*.pyc
+*.pyo
