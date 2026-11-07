@@ -3,6 +3,7 @@ upstream/
 aosp/
 kernel-workspace/
 out/
+dist/
 toolchain/
 
 # Never commit firmware/images or extracted proprietary files
